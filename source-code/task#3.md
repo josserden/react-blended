@@ -17,7 +17,7 @@
   <BoardHeader>
     <BoardTitle>
       <TitleTop>Forbes</TitleTop>
-      <TitleBottom>Leaderboard</TitleBottom>
+      <TitleBottom>Leader board</TitleBottom>
     </BoardTitle>
   </BoardHeader>
 
@@ -58,7 +58,7 @@
 ## Приклад використання
 
 ```js
-import rating from 'data/forbes.json';
+import forbes from 'data/forbes.json';
 
-<FriendList list={rating} />,
+<FriendList list={forbes} />,
 ```
