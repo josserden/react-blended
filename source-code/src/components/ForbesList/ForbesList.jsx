@@ -22,6 +22,7 @@ export const ForbesList = ({ list }) => {
         {list &&
           list.map(({ avatar, name, capital, isIncrease }) => (
             <ForbesListItem
+              key={name}
               avatar={avatar}
               name={name}
               capital={capital}
