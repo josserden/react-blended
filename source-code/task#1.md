@@ -4,7 +4,7 @@
 відображати інформацію про користувача соціальної мережі. Дані про користувача
 лежать у файлі [article.json](./src/data/article.json).
 
-[![Прев'ю компонента BlogCard](https://i.gyazo.com/ce643e097b80ee46fc992e7e6727e5c1.jpg)](https://gyazo.com/ce643e097b80ee46fc992e7e6727e5c1)
+[![Прев'ю компонента BlogCard](https://i.gyazo.com/5ce54e49016220bcde9209b893eb5e62.jpg)](https://gyazo.com/5ce54e49016220bcde9209b893eb5e62)
 
 ## Опис компонента `<BlogCard/>`
 
