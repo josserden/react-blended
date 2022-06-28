@@ -1,5 +1,6 @@
-import { BlogCard, Container, Section, Heading } from 'components';
+import { BlogCard, Container, Section, Heading, ForbesList } from 'components';
 import article from 'data/article';
+import forbes from 'data/forbes';
 
 export const App = () => {
   return (
@@ -18,9 +19,10 @@ export const App = () => {
           description={article.description}
         />
 
-        <Heading marginTop="50px" textAlign="center">
-          Task 2
+        <Heading marginTop="50px" marginBottom="50px" textAlign="center">
+          Task 3
         </Heading>
+        <ForbesList list={forbes} />
       </Container>
     </Section>
   );

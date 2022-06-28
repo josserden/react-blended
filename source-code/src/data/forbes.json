@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "name": "Karl Lindgren",
+    "capital": 35.7,
+    "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
+    "isIncrease": false
+  },
+  {
+    "id": "2",
+    "name": "Mary Austin",
+    "capital": 9.9,
+    "avatar": "https://randomuser.me/api/portraits/women/33.jpg",
+    "isIncrease": true
+  },
+  {
+    "id": "3",
+    "name": "Marcus Schneider",
+    "capital": 23.2,
+    "avatar": "https://randomuser.me/api/portraits/men/22.jpg",
+    "isIncrease": false
+  },
+  {
+    "id": "4",
+    "name": "Jerry Zemlak",
+    "capital": 4.5,
+    "avatar": "https://randomuser.me/api/portraits/men/12.jpg",
+    "isIncrease": true
+  },
+  {
+    "id": "5",
+    "name": "Ollie Heaney",
+    "capital": 1.9,
+    "avatar": "https://randomuser.me/api/portraits/women/32.jpg",
+    "isIncrease": false
+  }
+]

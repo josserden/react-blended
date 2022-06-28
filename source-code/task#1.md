@@ -18,7 +18,7 @@
 - `avatar` — аватар користувача
 - `postedAt` — час створення (рекомендовано в форматі від дати до сьогодні)
 
-Компонент повинен створювати компонент наступної структури.
+Компонент повинен створювати наступну структуру.
 
 ```jsx
 <Card>
@@ -51,7 +51,7 @@
 ## Приклад використання
 
 ```js
-import article from 'data/article.json;
+import article from 'data/article.json';
 
 <BlogCard
   poster={article.poster}
@@ -61,5 +61,5 @@ import article from 'data/article.json;
   userName={article.name}
   avatar={article.avatar}
   postedAt={article.postedAt}
-/>
+/>;
 ```
