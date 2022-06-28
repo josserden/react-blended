@@ -1,6 +1,4 @@
-# React Blended
-
-## Template Tasks
+# Template Tasks
 
 | `Lesson` | `Source Code` | `Start Files` |
 | :------: | :-----------: | :-----------: |
