@@ -8,11 +8,6 @@ import {
   CryptoHistory,
 } from 'components';
 
-import article from 'data/article';
-import forbes from 'data/forbes';
-import data from 'data/data';
-import transactions from 'data/transactions';
-
 export const App = () => {
   return (
     <Section>
