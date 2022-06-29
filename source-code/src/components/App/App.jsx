@@ -5,11 +5,13 @@ import {
   Heading,
   Statistics,
   ForbesList,
+  CryptoHistory,
 } from 'components';
 
 import article from 'data/article';
 import forbes from 'data/forbes';
 import data from 'data/data';
+import transactions from 'data/transactions';
 
 export const App = () => {
   return (
@@ -37,6 +39,11 @@ export const App = () => {
           Task 3
         </Heading>
         <ForbesList list={forbes} />
+
+        <Heading marginTop="50px" marginBottom="50px" textAlign="center">
+          Task 4
+        </Heading>
+        <CryptoHistory items={transactions} />
       </Container>
     </Section>
   );

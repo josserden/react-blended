@@ -7,3 +7,4 @@ export * from 'components/ForbesList/ForbesList.jsx';
 export * from 'components/ForbesListItem/ForbesListItem.jsx';
 export * from 'components/Statistics/Statistics.jsx';
 export * from 'components/StatisticItem/StatisticItem.jsx';
+export * from 'components/CryptoHistory/CryptoHistory.jsx';
