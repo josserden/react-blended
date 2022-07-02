@@ -42,7 +42,7 @@
 Компонент повинен бути наступної структури.
 
 ```jsx
-<ForbesListItem>
+<ForbesItem>
   <Avatar
     src="https://randomuser.me/api/portraits/men/32.jpg"
     alt="Mark Zuckerberg"
@@ -52,7 +52,7 @@
     35.7 <BiDollarCircle color={theme.colors.accent} size={22} />
     {/* Тут має бути необхідна іконка зміни статку */}
   </Capital>
-</ForbesListItem>
+</ForbesItem>
 ```
 
 ## Приклад використання
