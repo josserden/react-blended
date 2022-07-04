@@ -1,2 +1,2 @@
 export * from 'tabs/Gallery';
-export * from 'tabs/Users';
+export * from 'tabs/Todos';

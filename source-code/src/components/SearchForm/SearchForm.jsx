@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { FiSearch } from 'react-icons/fi';
-import { BtnSearch, InputSearch, SearchFormStyled } from './SearchForm.styled';
+import { FormBtn, InputSearch, SearchFormStyled } from './SearchForm.styled';
 
 export class SearchForm extends Component {
   state = {
@@ -30,12 +30,12 @@ export class SearchForm extends Component {
 
     return (
       <SearchFormStyled onSubmit={this.handleSubmit}>
-        <BtnSearch type="submit">
+        <FormBtn type="submit">
           <FiSearch size="16px" />
-        </BtnSearch>
+        </FormBtn>
         <InputSearch
           onChange={this.handleInput}
-          placeholder="Search..."
+          placeholder="What do you want to write?"
           name="search"
           required
           value={query}

@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
-// import { TiDeleteOutline } from 'react-icons/ti';
+import { Component } from 'react';
 
 import * as ImageService from 'service/image-service';
-import { Grid, GridItem } from 'components';
-
-import { Button } from 'components';
-import { SearchForm } from 'components';
+import { Button, SearchForm, Grid, GridItem, Text, CardItem } from 'components';
 
 export class Gallery extends Component {
   state = {
@@ -15,6 +11,7 @@ export class Gallery extends Component {
     isVisible: false,
     error: null,
     isLoading: false,
+    isEmpty: false,
   };
 
   componentDidMount() {
@@ -48,6 +45,12 @@ export class Gallery extends Component {
         page: currentPage,
       } = await ImageService.getImages(query, page);
 
+      if (photos.length === 0) {
+        this.setState({
+          isEmpty: true,
+        });
+      }
+
       this.setState(prevState => ({
         images: [...prevState.images, ...photos],
         isVisible: currentPage < Math.ceil(total_results / per_page),
@@ -56,7 +59,7 @@ export class Gallery extends Component {
       console.error(error);
 
       this.setState({
-        error,
+        error: error.message,
       });
     } finally {
       this.setState({
@@ -77,21 +80,32 @@ export class Gallery extends Component {
       page: 1,
       images: [],
       error: null,
+      isEmpty: false,
     });
   };
 
   render() {
-    const { images, isVisible, isLoading } = this.state;
+    const { images, isVisible, isLoading, isEmpty, error } = this.state;
 
     return (
       <>
         <SearchForm onSubmit={this.onHandleSubmit} />
 
+        {error && (
+          <Text textAlign="center">❌ Something went wrong - {error}</Text>
+        )}
+
+        {isEmpty && (
+          <Text textAlign="center">Sorry. There are no images ... 😭</Text>
+        )}
+
         <Grid>
-          {images &&
+          {images.length > 0 &&
             images.map(({ id, avg_color, alt, src }) => (
-              <GridItem key={id} color={avg_color}>
-                <img src={src.large} alt={alt} />
+              <GridItem key={id}>
+                <CardItem color={avg_color}>
+                  <img src={src.large} alt={alt} />
+                </CardItem>
               </GridItem>
             ))}
         </Grid>

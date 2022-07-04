@@ -34,7 +34,7 @@ export const InputSearch = styled.input`
   }
 `;
 
-export const BtnSearch = styled.button`
+export const FormBtn = styled.button`
   width: 50px;
   height: 50px;
 
