@@ -73,12 +73,8 @@ export class Todos extends Component {
     const { todos } = this.state;
 
     const updatedItem = todos.map(todo => {
-      console.log(todo.id === id);
-
       return todo.id === id ? updatedTodo : todo;
     });
-
-    console.log(updatedTodo);
 
     this.setState({
       isEditing: false,
