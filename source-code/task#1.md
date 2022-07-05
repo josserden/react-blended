@@ -7,7 +7,8 @@
 
 Створи компоненти `<SearchForm>`, `<ImageCard>`, `<Button>` і `<Modal>`. Для
 створення сітки використовуй styled-components `<Grid>` та `<GridItem>`
-[Grid](./src/components/Grid/Grid.styled.jsx)
+
+> Тут самі файли[Grid](./src/components/Grid/Grid.styled.jsx)
 
 ## Інструкція Pexels API
 
