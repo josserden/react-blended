@@ -1,36 +1,150 @@
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import { Component } from 'react';
+import { nanoid } from 'nanoid';
+import {
+  Section,
+  Container,
+  Grid,
+  GridItem,
+  SearchForm,
+  EditForm,
+  Text,
+  Todo,
+  Header,
+} from 'components';
 
-import { Header, Section, Container, Text } from 'components';
-import { Gallery, Todos } from 'tabs';
+export class App extends Component {
+  state = {
+    todos: [],
+    isEditing: false,
+    currentTodo: {},
+  };
 
-export const App = () => {
-  return (
-    <>
-      <Header />
+  componentDidMount() {
+    const todos = JSON.parse(localStorage.getItem('todos'));
 
-      <Section>
-        <Container>
-          <Tabs>
-            <TabList>
-              <Tab>
-                <Text>Gallery</Text>
-              </Tab>
-              <Tab>
-                <Text>Todos</Text>
-              </Tab>
-            </TabList>
+    if (todos) {
+      this.setState(() => ({ todos }));
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    const { todos } = this.state;
 
-            <TabPanel>
-              <Gallery />
-            </TabPanel>
+    if (prevState.todos !== todos) {
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
+  }
 
-            <TabPanel>
-              <Todos />
-            </TabPanel>
-          </Tabs>
-        </Container>
-      </Section>
-    </>
-  );
-};
+  addTodo = text => {
+    const todo = {
+      id: nanoid(),
+      text,
+    };
+
+    this.setState(({ todos }) => ({
+      todos: [...todos, todo],
+    }));
+  };
+  handleSubmit = data => {
+    this.addTodo(data);
+  };
+
+  deleteTodo = id => {
+    this.setState(prevState => ({
+      todos: prevState.todos.filter(todo => todo.id !== id),
+    }));
+  };
+
+  handleEdit = todo => {
+    this.setState({
+      currentTodo: { ...todo },
+      isEditing: true,
+    });
+  };
+
+  handleCancel = () => {
+    this.setState({
+      isEditing: false,
+    });
+  };
+
+  handleInputEditChange = e => {
+    const { currentTodo } = this.state;
+
+    this.setState({
+      currentTodo: {
+        ...currentTodo,
+        text: e.target.value.trim(),
+      },
+    });
+  };
+
+  handleUpdateTodo = (id, updatedTodo) => {
+    const { todos } = this.state;
+
+    const updatedItem = todos.map(todo => {
+      return todo.id === id ? updatedTodo : todo;
+    });
+
+    this.setState({
+      isEditing: false,
+      todos: updatedItem,
+    });
+  };
+
+  handleEditFormUpdate = e => {
+    e.preventDefault();
+
+    const { currentTodo } = this.state;
+
+    if (currentTodo.text === '') {
+      return alert('Enter some text!');
+    }
+
+    this.handleUpdateTodo(currentTodo.id, currentTodo);
+  };
+
+  render() {
+    const { todos, isEditing, currentTodo } = this.state;
+
+    return (
+      <>
+        <Header />
+
+        <Section>
+          <Container>
+            {isEditing ? (
+              <EditForm
+                onCancel={this.handleCancel}
+                currentTodo={currentTodo}
+                onUpdate={this.handleEditFormUpdate}
+                onChange={this.handleInputEditChange}
+              />
+            ) : (
+              <SearchForm onSubmit={this.handleSubmit} />
+            )}
+
+            {todos.length === 0 && (
+              <Text textAlign="center">There are no any todos ... </Text>
+            )}
+
+            <Grid>
+              {todos.length > 0 &&
+                todos.map((todo, index) => (
+                  <GridItem key={todo.id}>
+                    <Todo
+                      id={todo.id}
+                      text={todo.text}
+                      counter={index + 1}
+                      onClick={this.deleteTodo}
+                      onEdit={() => this.handleEdit(todo)}
+                      disabled={isEditing}
+                    />
+                  </GridItem>
+                ))}
+            </Grid>
+          </Container>
+        </Section>
+      </>
+    );
+  }
+}
