@@ -8,8 +8,8 @@
 > [react-tabs](https://www.npmjs.com/package/react-tabs), яка використовується в
 > **Basic Example** в Арр для розділення двох завдань. Також потрібно буде
 > отримати ключ з ресурсу [pexels](https://www.pexels.com/api/) - для роботи з
-> вправою Пошук зображень Обох завданнях будемо перевикористовувати компоненти
-> `<SearchFormStyled/>` та styled-components `Grid` та `GridItem`
+> вправою Пошук зображень. В обох завданнях будемо перевикористовувати
+> компоненти `<SearchFormStyled/>` та styled-components `Grid` та `GridItem`
 
 ## Завдання
 
