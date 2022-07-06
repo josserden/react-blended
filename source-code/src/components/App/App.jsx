@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import {
   Section,
@@ -11,140 +11,104 @@ import {
   Todo,
   Header,
 } from 'components';
+import { useLocalStorage } from 'hooks';
 
-export class App extends Component {
-  state = {
-    todos: [],
-    isEditing: false,
-    currentTodo: {},
-  };
+export const App = () => {
+  const [value, setValue] = useLocalStorage('todos', []);
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentTodo, setCurrentTodo] = useState({});
 
-  componentDidMount() {
-    const todos = JSON.parse(localStorage.getItem('todos'));
-
-    if (todos) {
-      this.setState(() => ({ todos }));
-    }
-  }
-  componentDidUpdate(prevProps, prevState) {
-    const { todos } = this.state;
-
-    if (prevState.todos !== todos) {
-      localStorage.setItem('todos', JSON.stringify(todos));
-    }
-  }
-
-  addTodo = text => {
+  const addTodo = text => {
     const todo = {
       id: nanoid(),
       text,
     };
 
-    this.setState(({ todos }) => ({
-      todos: [...todos, todo],
-    }));
-  };
-  handleSubmit = data => {
-    this.addTodo(data);
+    setValue([...value, todo]);
   };
 
-  deleteTodo = id => {
-    this.setState(prevState => ({
-      todos: prevState.todos.filter(todo => todo.id !== id),
-    }));
+  const handleSubmit = todo => {
+    addTodo(todo);
   };
 
-  handleEdit = todo => {
-    this.setState({
-      currentTodo: { ...todo },
-      isEditing: true,
-    });
+  const deleteTodo = id => {
+    setValue(value.filter(todo => todo.id !== id));
   };
 
-  handleCancel = () => {
-    this.setState({
-      isEditing: false,
-    });
+  const toggleEdit = () => setIsEditing(prevState => !prevState);
+
+  const handleEdit = todo => {
+    setCurrentTodo({ ...todo });
+    toggleEdit();
   };
 
-  handleInputEditChange = e => {
-    const { currentTodo } = this.state;
-
-    this.setState({
-      currentTodo: {
-        ...currentTodo,
-        text: e.target.value.trim(),
-      },
-    });
+  const handleCancel = () => {
+    toggleEdit();
   };
 
-  handleUpdateTodo = (id, updatedTodo) => {
-    const { todos } = this.state;
+  const handleInputEditChange = e => {
+    const { value } = e.target;
 
-    const updatedItem = todos.map(todo => {
+    setCurrentTodo({ ...currentTodo, text: value.trim() });
+  };
+
+  const handleUpdateTodo = (id, updatedTodo) => {
+    const updatedItem = value.map(todo => {
       return todo.id === id ? updatedTodo : todo;
     });
 
-    this.setState({
-      isEditing: false,
-      todos: updatedItem,
-    });
+    toggleEdit();
+    setValue(updatedItem);
   };
 
-  handleEditFormUpdate = e => {
+  const handleEditFormUpdate = e => {
     e.preventDefault();
-
-    const { currentTodo } = this.state;
 
     if (currentTodo.text === '') {
       return alert('Enter some text!');
     }
 
-    this.handleUpdateTodo(currentTodo.id, currentTodo);
+    handleUpdateTodo(currentTodo.id, currentTodo);
   };
 
-  render() {
-    const { todos, isEditing, currentTodo } = this.state;
+  return (
+    <>
+      <Header />
 
-    return (
-      <>
-        <Header />
+      <Section>
+        <Container>
+          {isEditing ? (
+            <EditForm
+              onCancel={handleCancel}
+              currentTodo={currentTodo}
+              onUpdate={handleEditFormUpdate}
+              onChange={handleInputEditChange}
+            />
+          ) : (
+            <SearchForm onSubmit={handleSubmit} />
+          )}
 
-        <Section>
-          <Container>
-            {isEditing ? (
-              <EditForm
-                onCancel={this.handleCancel}
-                currentTodo={currentTodo}
-                onUpdate={this.handleEditFormUpdate}
-                onChange={this.handleInputEditChange}
-              />
-            ) : (
-              <SearchForm onSubmit={this.handleSubmit} />
-            )}
+          {value.length === 0 && (
+            <Text textAlign="center">There are no any todos ... </Text>
+          )}
 
-            {todos.length === 0 && (
-              <Text textAlign="center">There are no any todos ... </Text>
-            )}
-
-            <Grid>
-              {todos.length > 0 &&
-                todos.map((todo, index) => (
-                  <GridItem key={todo.id}>
-                    <Todo
-                      id={todo.id}
-                      text={todo.text}
-                      counter={index + 1}
-                      onClick={this.deleteTodo}
-                      onEdit={() => this.handleEdit(todo)}
-                      disabled={isEditing}
-                    />
-                  </GridItem>
-                ))}
-            </Grid>
-          </Container>
-        </Section>
-      </>
-    );
-  }
-}
+          <Grid>
+            {value.length > 0 &&
+              value.map((todo, index) => (
+                <GridItem key={todo.id}>
+                  <Todo
+                    id={todo.id}
+                    text={todo.text}
+                    counter={index + 1}
+                    onClick={deleteTodo}
+                    onEdit={() => handleEdit(todo)}
+                    disabled={isEditing}
+                  />
+                </GridItem>
+              ))}
+          </Grid>
+        </Container>
+      </Section>
+    </>
+  );
+};
