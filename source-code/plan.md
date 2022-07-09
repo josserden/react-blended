@@ -19,15 +19,11 @@
 
 ```bash
 {
-  todos: {
-    items: [],
-  }
+  todos: [],
 }
 ```
 
 - Створи сховище з `configureStore()`
-- Створи дії збереження, видалення та редагування todo. Використовуй функцію
-  `createAction()`.
 - Створи редюсери todo. Використовуй функцію `createSlice()`.
 - Зв'яжи React-компоненти з Redux-логікою за допомогою хуків бібліотеки
 
@@ -39,3 +35,7 @@ npm install @reduxjs/toolkit react-redux
 
 - Для зберігання всего `state` застосунку в `local storage` використовуй
   бібліотеку [redux-persist](https://github.com/rt2zz/redux-persist#basic-usage)
+
+- використовуй цей
+  [конфіг](https://redux-toolkit.js.org/usage/usage-guide#use-with-redux-persist)
+  для `store`

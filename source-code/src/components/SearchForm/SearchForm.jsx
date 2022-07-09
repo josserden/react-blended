@@ -1,22 +1,31 @@
+import { nanoid } from 'nanoid';
 import { FiSearch } from 'react-icons/fi';
 
 import { useLocalStorage } from 'hooks';
 import { FormBtn, InputSearch, SearchFormStyled } from './SearchForm.styled';
+import { useDispatch } from 'react-redux';
+import { addTodo } from 'redux/todoSlice';
 
-export const SearchForm = ({ onSubmit }) => {
+export const SearchForm = () => {
   const [value, setValue] = useLocalStorage('search', '');
+
+  const dispatch = useDispatch();
 
   const handleInput = e => {
     const { value } = e.currentTarget;
-    const normalizedValue = value.toLowerCase().trim();
 
-    setValue(normalizedValue);
+    setValue(value);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    onSubmit(value);
+    const todo = {
+      id: nanoid(),
+      text: value,
+    };
+
+    dispatch(addTodo(todo));
     setValue('');
   };
 

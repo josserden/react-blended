@@ -15,7 +15,6 @@ import rootReducer from 'redux/todoSlice';
 
 const persistConfig = {
   key: 'todos',
-  version: 1,
   storage,
 };
 
