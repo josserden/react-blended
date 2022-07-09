@@ -1,14 +1,17 @@
+import { useState } from 'react';
+import { nanoid } from 'nanoid';
 import {
-  Container,
-  EditForm,
-  Header,
-  SearchForm,
   Section,
-  TodoList,
+  Container,
+  Grid,
+  GridItem,
+  SearchForm,
+  EditForm,
+  Text,
+  Todo,
+  Header,
 } from 'components';
 import { useLocalStorage } from 'hooks';
-import { nanoid } from 'nanoid';
-import { useState } from 'react';
 
 export const App = () => {
   const [value, setValue] = useLocalStorage('todos', []);
@@ -85,7 +88,25 @@ export const App = () => {
             <SearchForm onSubmit={handleSubmit} />
           )}
 
-          <TodoList />
+          {value.length === 0 && (
+            <Text textAlign="center">There are no any todos ... </Text>
+          )}
+
+          <Grid>
+            {value.length > 0 &&
+              value.map((todo, index) => (
+                <GridItem key={todo.id}>
+                  <Todo
+                    id={todo.id}
+                    text={todo.text}
+                    counter={index + 1}
+                    onClick={deleteTodo}
+                    onEdit={() => handleEdit(todo)}
+                    disabled={isEditing}
+                  />
+                </GridItem>
+              ))}
+          </Grid>
         </Container>
       </Section>
     </>

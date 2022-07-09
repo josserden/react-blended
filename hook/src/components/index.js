@@ -11,4 +11,3 @@ export * from 'components/EditForm/EditForm.styled';
 export * from 'components/Text/Text.styled';
 export * from 'components/Grid/Grid.styled';
 export * from 'components/Todo/Todo';
-export * from 'components/TodoList/TodoList';
