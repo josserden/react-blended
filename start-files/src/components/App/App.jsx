@@ -1,22 +1,20 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+
 import {
-  Section,
   Container,
   Grid,
   GridItem,
+  Header,
   SearchForm,
-  EditForm,
+  Section,
   Text,
   Todo,
-  Header,
 } from 'components';
 
 export class App extends Component {
   state = {
     todos: [],
-    isEditing: false,
-    currentTodo: {},
   };
 
   componentDidMount() {
@@ -44,6 +42,7 @@ export class App extends Component {
       todos: [...todos, todo],
     }));
   };
+
   handleSubmit = data => {
     this.addTodo(data);
   };
@@ -54,73 +53,15 @@ export class App extends Component {
     }));
   };
 
-  handleEdit = todo => {
-    this.setState({
-      currentTodo: { ...todo },
-      isEditing: true,
-    });
-  };
-
-  handleCancel = () => {
-    this.setState({
-      isEditing: false,
-    });
-  };
-
-  handleInputEditChange = e => {
-    const { currentTodo } = this.state;
-
-    this.setState({
-      currentTodo: {
-        ...currentTodo,
-        text: e.target.value.trim(),
-      },
-    });
-  };
-
-  handleUpdateTodo = (id, updatedTodo) => {
-    const { todos } = this.state;
-
-    const updatedItem = todos.map(todo => {
-      return todo.id === id ? updatedTodo : todo;
-    });
-
-    this.setState({
-      isEditing: false,
-      todos: updatedItem,
-    });
-  };
-
-  handleEditFormUpdate = e => {
-    e.preventDefault();
-
-    const { currentTodo } = this.state;
-
-    if (currentTodo.text === '') {
-      return alert('Enter some text!');
-    }
-
-    this.handleUpdateTodo(currentTodo.id, currentTodo);
-  };
-
   render() {
-    const { todos, isEditing, currentTodo } = this.state;
+    const { todos } = this.state;
 
     return (
       <>
         <Header />
         <Section>
           <Container>
-            {isEditing ? (
-              <EditForm
-                onCancel={this.handleCancel}
-                currentTodo={currentTodo}
-                onUpdate={this.handleEditFormUpdate}
-                onChange={this.handleInputEditChange}
-              />
-            ) : (
-              <SearchForm onSubmit={this.handleSubmit} />
-            )}
+            <SearchForm onSubmit={this.handleSubmit} />
 
             {todos.length === 0 && (
               <Text textAlign="center">There are no any todos ... </Text>
@@ -135,8 +76,6 @@ export class App extends Component {
                       text={todo.text}
                       counter={index + 1}
                       onClick={this.deleteTodo}
-                      onEdit={() => this.handleEdit(todo)}
-                      disabled={isEditing}
                     />
                   </GridItem>
                 ))}
