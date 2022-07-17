@@ -14,11 +14,12 @@ export class Gallery extends Component {
     isEmpty: false,
   };
 
-  componentDidMount() {
-    const { query, page } = this.state;
+  // Потрібно лише перед тим, щоб показати що працює и не налаштований submit
+  // componentDidMount() {
+  //   const { query, page } = this.state;
 
-    this.getPhotos(query, page);
-  }
+  //   this.getPhotos(query, page);
+  // }
 
   componentDidUpdate(prevProps, prevState) {
     const { query, page } = this.state;
