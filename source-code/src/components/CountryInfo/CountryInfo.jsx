@@ -27,7 +27,9 @@ export const CountryInfo = ({
           Capital: <Accent>{capital}</Accent>
         </CountryCapital>
 
-        <CountryTitle>{country}</CountryTitle>
+        <CountryTitle>
+          {country === 'Russian Federation' ? 'MORDOR' : country}
+        </CountryTitle>
 
         <CountryDetail>
           Population: <Accent>{population}</Accent>
