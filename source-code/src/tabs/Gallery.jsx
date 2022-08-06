@@ -103,10 +103,8 @@ export class Gallery extends Component {
         <Grid>
           {images.length > 0 &&
             images.map(({ id, avg_color, alt, src }) => (
-              <GridItem key={id}>
-                <CardItem color={avg_color}>
-                  <img src={src.large} alt={alt} />
-                </CardItem>
+              <GridItem key={id} color={avg_color}>
+                <img src={src.large} alt={alt} />
               </GridItem>
             ))}
         </Grid>
