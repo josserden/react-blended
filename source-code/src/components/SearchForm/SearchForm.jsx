@@ -33,6 +33,7 @@ export class SearchForm extends Component {
         <FormBtn type="submit">
           <FiSearch size="16px" />
         </FormBtn>
+
         <InputSearch
           onChange={this.handleInput}
           placeholder="What do you want to write?"

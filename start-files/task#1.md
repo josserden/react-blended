@@ -80,7 +80,9 @@ Pexels API підтримує пагінацію, за замовчування�
 
 ```jsx
 <GridItem>
-  <img src="" alt="" />
+  <CardItem>
+    <img src="" alt="" />
+  </CardItem>
 </GridItem>
 ```
 
