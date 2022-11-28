@@ -26,18 +26,3 @@ export const DeleteButton = styled.button`
     transform: scale(1.05);
   }
 `;
-
-export const EditButton = styled.button`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-
-  padding: ${({ theme }) => theme.spacing(2.5)};
-
-  transition: transform ${({ theme }) => theme.animation.cubicBezier};
-
-  &:hover,
-  &:focus {
-    transform: scale(1.05);
-  }
-`;

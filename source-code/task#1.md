@@ -21,7 +21,7 @@
 ```js
 import axios from 'axios';
 
-const API_KEY = '';
+const API_KEY = 'тут вставити ключ';
 axios.defaults.baseURL = 'https://api.pexels.com/v1/';
 axios.defaults.headers.common['Authorization'] = API_KEY;
 axios.defaults.params = {
@@ -69,7 +69,7 @@ Pexels API підтримує пагінацію, за замовчування�
 ```jsx
 <Grid>
   {/*
-    Набір <CardItem></CardItem> із зображеннями
+    Набір <GridItem></GridItem> із зображеннями
     */}
 </Grid>
 ```

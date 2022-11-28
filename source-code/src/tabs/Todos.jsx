@@ -1,12 +1,10 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { Grid, GridItem, SearchForm, EditForm, Text, Todo } from 'components';
+import { Grid, GridItem, SearchForm, Text, Todo } from 'components';
 
 export class Todos extends Component {
   state = {
     todos: [],
-    isEditing: false,
-    currentTodo: {},
   };
 
   componentDidMount() {
@@ -16,6 +14,7 @@ export class Todos extends Component {
       this.setState(() => ({ todos }));
     }
   }
+
   componentDidUpdate(prevProps, prevState) {
     const { todos } = this.state;
 
@@ -34,6 +33,7 @@ export class Todos extends Component {
       todos: [...todos, todo],
     }));
   };
+
   handleSubmit = data => {
     this.addTodo(data);
   };
@@ -44,70 +44,12 @@ export class Todos extends Component {
     }));
   };
 
-  handleEdit = todo => {
-    this.setState({
-      currentTodo: { ...todo },
-      isEditing: true,
-    });
-  };
-
-  handleCancel = () => {
-    this.setState({
-      isEditing: false,
-    });
-  };
-
-  handleInputEditChange = e => {
-    const { currentTodo } = this.state;
-
-    this.setState({
-      currentTodo: {
-        ...currentTodo,
-        text: e.target.value.trim(),
-      },
-    });
-  };
-
-  handleUpdateTodo = (id, updatedTodo) => {
-    const { todos } = this.state;
-
-    const updatedItem = todos.map(todo => {
-      return todo.id === id ? updatedTodo : todo;
-    });
-
-    this.setState({
-      isEditing: false,
-      todos: updatedItem,
-    });
-  };
-
-  handleEditFormUpdate = e => {
-    e.preventDefault();
-
-    const { currentTodo } = this.state;
-
-    if (currentTodo.text === '') {
-      return alert('Enter some text!');
-    }
-
-    this.handleUpdateTodo(currentTodo.id, currentTodo);
-  };
-
   render() {
-    const { todos, isEditing, currentTodo } = this.state;
+    const { todos, isEditing } = this.state;
 
     return (
       <>
-        {isEditing ? (
-          <EditForm
-            onCancel={this.handleCancel}
-            currentTodo={currentTodo}
-            onUpdate={this.handleEditFormUpdate}
-            onChange={this.handleInputEditChange}
-          />
-        ) : (
-          <SearchForm onSubmit={this.handleSubmit} />
-        )}
+        <SearchForm onSubmit={this.handleSubmit} />
 
         {todos.length === 0 && (
           <Text textAlign="center">There are no any todos ... </Text>

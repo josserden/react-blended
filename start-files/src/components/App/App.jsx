@@ -1,7 +1,6 @@
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-
-import { Header, Section, Container, Text } from 'components';
+import { Container, Header, Section, Text } from 'components';
 import { Gallery, Todos } from 'tabs';
 
 export const App = () => {

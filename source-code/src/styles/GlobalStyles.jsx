@@ -32,7 +32,8 @@ export const GlobalStyles = css`
   ol {
     list-style: none;
     padding-left: 0;
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   img {
