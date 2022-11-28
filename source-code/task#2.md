@@ -57,7 +57,7 @@
 ## Приклад використання
 
 ```js
-import data from '/путь/к/data.json';
+import data from 'data/data.json';
 
 <Statistics title="Main Statistics" stats={data} />;
 <Statistics stats={data} />;
