@@ -7,9 +7,9 @@ export const NavBar = styled.header`
 
   padding-top: 20px;
   padding-bottom: 20px;
-  background-color: ${props => props.theme.colors.mainBackground};
+  background-color: ${({ theme }) => theme.colors.mainBackground};
 
-  box-shadow: 0px 2px 10px 1px ${props => props.theme.colors.dark};
+  box-shadow: 0px 2px 10px 1px ${({ theme }) => theme.colors.dark};
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 
@@ -22,26 +22,26 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const NavLinkStyled = styled(NavLink)`
-  color: ${props => props.theme.colors.light};
-  font-size: ${props => props.theme.fontSizes.medium};
+  color: ${({ theme }) => theme.colors.light};
+  font-size: ${({ theme }) => theme.fontSizes.medium};
   font-weight: 700;
 
   text-transform: uppercase;
 
   transition-property: color, background-color, transform;
   transition-duration: 0.2s;
-  transition-timing-function: ${props => props.theme.animations.cubicBezier};
+  transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
 
   transform: scale(0.9);
 
   &:hover,
   &:focus {
-    color: ${props => props.theme.colors.white};
+    color: ${({ theme }) => theme.colors.white};
   }
 
   &.active {
-    color: ${props => props.theme.colors.white};
-    background-color: ${props => props.theme.colors.accent};
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.accent};
 
     padding: 6px 12px;
     border-radius: 4px;
@@ -54,7 +54,7 @@ export const NavLinkStyled = styled(NavLink)`
 export const LinkWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: ${props => props.theme.spacing.step * 5}px;
+  gap: ${({ theme }) => theme.spacing(5)};
 
-  margin-left: ${props => props.theme.spacing.step * 7}px;
+  margin-left: ${({ theme }) => theme.spacing(7)};
 `;

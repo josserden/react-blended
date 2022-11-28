@@ -71,6 +71,6 @@ export const CountryDetail = styled.p`
 `;
 
 export const Accent = styled.span`
-  color: ${props => props.theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
   font-weight: bold;
 `;

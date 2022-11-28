@@ -1,84 +1,84 @@
 import styled from '@emotion/styled';
 
 export const Section = styled.section`
-  padding-top: ${props => props.theme.spacing.step * 5}px;
-  padding-bottom: ${props => props.theme.spacing.step * 5}px;
+  padding-top: ${({ theme }) => theme.spacing(5)};
+  padding-bottom: ${({ theme }) => theme.spacing(5)};
 
-  @media (min-width: ${props => props.theme.breakpoints.s}) {
-    padding-top: ${props => props.theme.spacing.step * 10}px;
-    padding-bottom: ${props => props.theme.spacing.step * 10}px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.s}) {
+    padding-top: ${({ theme }) => theme.spacing(10)};
+    padding-bottom: ${({ theme }) => theme.spacing(10)};
   }
-  @media (min-width: ${props => props.theme.breakpoints.l}) {
-    padding-top: ${props => props.theme.spacing.step * 20}px;
-    padding-bottom: ${props => props.theme.spacing.step * 20}px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.l}) {
+    padding-top: ${({ theme }) => theme.spacing(20)};
+    padding-bottom: ${({ theme }) => theme.spacing(20)};
   }
 `;
 
 export const Container = styled.div`
   width: 100%;
 
-  padding-left: ${props => props.theme.spacing.step * 5}px;
-  padding-right: ${props => props.theme.spacing.step * 5}px;
+  padding-left: ${({ theme }) => theme.spacing(5)};
+  padding-right: ${({ theme }) => theme.spacing(5)};
 
   margin-left: auto;
   margin-right: auto;
 
-  @media (min-width: ${props => props.theme.breakpoints.s}) {
-    width: ${props => props.theme.breakpoints.s};
+  @media (min-width: ${({ theme }) => theme.breakpoints.s}) {
+    width: ${({ theme }) => theme.breakpoints.s};
   }
-  @media (min-width: ${props => props.theme.breakpoints.m}) {
-    width: ${props => props.theme.breakpoints.m};
+  @media (min-width: ${({ theme }) => theme.breakpoints.m}) {
+    width: ${({ theme }) => theme.breakpoints.m};
   }
-  @media (min-width: ${props => props.theme.breakpoints.l}) {
-    width: ${props => props.theme.breakpoints.l};
+  @media (min-width: ${({ theme }) => theme.breakpoints.l}) {
+    width: ${({ theme }) => theme.breakpoints.l};
   }
 `;
 
 export const Heading = styled.h2`
-  font-size: ${props => props.theme.fontSizes.medium};
+  font-size: ${({ theme }) => theme.fontSizes.medium};
   font-weight: 700;
-  color: ${props => props.theme.colors.white};
+  color: ${({ theme }) => theme.colors.white};
 
   text-align: ${({ textAlign }) => (!textAlign ? 'left' : textAlign)};
   margin-bottom: ${({ marginBottom }) => (!marginBottom ? 0 : marginBottom)};
 
-  @media (min-width: ${props => props.theme.breakpoints.s}) {
-    font-size: ${props => props.theme.fontSizes.large};
+  @media (min-width: ${({ theme }) => theme.breakpoints.s}) {
+    font-size: ${({ theme }) => theme.fontSizes.large};
   }
-  @media (min-width: ${props => props.theme.breakpoints.m}) {
-    font-size: ${props => props.theme.fontSizes.xl};
+  @media (min-width: ${({ theme }) => theme.breakpoints.m}) {
+    font-size: ${({ theme }) => theme.fontSizes.xl};
   }
-  @media (min-width: ${props => props.theme.breakpoints.l}) {
-    font-size: ${props => props.theme.fontSizes.xxl};
+  @media (min-width: ${({ theme }) => theme.breakpoints.l}) {
+    font-size: ${({ theme }) => theme.fontSizes.xxl};
   }
 `;
 
 export const Text = styled.p`
-  font-size: ${props => props.theme.fontSizes.small};
+  font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: 700;
 
   text-align: ${({ textAlign }) => (!textAlign ? 'left' : textAlign)};
-  margin-bottom: ${props => props.theme.spacing.step * 5}px;
+  margin-bottom: ${({ theme }) => theme.spacing(5)};
 
-  @media (min-width: ${props => props.theme.breakpoints.s}) {
-    font-size: ${props => props.theme.fontSizes.medium};
+  @media (min-width: ${({ theme }) => theme.breakpoints.s}) {
+    font-size: ${({ theme }) => theme.fontSizes.medium};
 
-    margin-bottom: ${props => props.theme.spacing.step * 7}px;
+    margin-bottom: ${({ theme }) => theme.spacing(7)};
   }
-  @media (min-width: ${props => props.theme.breakpoints.m}) {
-    font-size: ${props => props.theme.fontSizes.large};
+  @media (min-width: ${({ theme }) => theme.breakpoints.m}) {
+    font-size: ${({ theme }) => theme.fontSizes.large};
 
-    margin-bottom: ${props => props.theme.spacing.step * 10}px;
+    margin-bottom: ${({ theme }) => theme.spacing(10)};
   }
-  @media (min-width: ${props => props.theme.breakpoints.l}) {
-    margin-bottom: ${props => props.theme.spacing.step * 20}px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.l}) {
+    margin-bottom: ${({ theme }) => theme.spacing(20)};
   }
 `;
 
 export const Grid = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: ${props => props.theme.spacing.step * 5}px;
+  grid-gap: ${({ theme }) => theme.spacing(5)};
 `;
 
 export const GridItem = styled.li`
@@ -89,8 +89,8 @@ export const GridItem = styled.li`
   background-color: ${props => props.color};
 
   border: 4px solid ${({ color }) => color ?? '#fff'};
-  border-radius: ${props => props.theme.spacing.step * 4}px;
-  transition: transform 0.5s ${props => props.theme.animations.cubicBezier};
+  border-radius: ${({ theme }) => theme.spacing(4)};
+  transition: transform 0.5s ${({ theme }) => theme.animations.cubicBezier};
 
   overflow: hidden;
   cursor: zoom-in;
@@ -98,6 +98,6 @@ export const GridItem = styled.li`
   &:hover,
   &:focus {
     transform: scale(1.05);
-    box-shadow: 0px 2px 10px 2px ${props => props.theme.colors.primary};
+    box-shadow: 0px 2px 10px 2px ${({ theme }) => theme.colors.primary};
   }
 `;
