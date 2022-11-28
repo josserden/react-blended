@@ -1,3 +1,3 @@
 # React Blended
 
-## Lesson 03
+## Lesson 03-2
