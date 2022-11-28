@@ -1,34 +1,24 @@
-import { Link, useLocation, Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
-import { Section, Container, CountryInfo, Loader } from 'components';
+import { Container, CountryInfo, GoBackBtn, Loader, Section } from 'components';
 import { useFetchCountry } from 'hooks';
+import { routes } from 'routes';
 
 export const Country = () => {
   const { country, error, isLoading } = useFetchCountry();
   const location = useLocation();
-  const goBackLink = location?.state?.from ?? '/';
+  const goBackLink = location?.state?.from ?? routes.HOME;
 
   const { id, flag, capital, countryName, population, languages } = country;
 
   return (
     <Section>
       <Container>
-        <div
-          style={{
-            marginBottom: '60px',
-            color: '#f2f2f2',
-            letterSpacing: '0.06em',
-            textDecoration: 'underline',
-
-            borderColor: 'gray',
-          }}
-        >
-          <Link to={goBackLink}>Back to Countries</Link>
-        </div>
+        <GoBackBtn path={goBackLink}> Back to Countries</GoBackBtn>
 
         {isLoading && <Loader />}
 
-        {error && <Navigate to={'/'} replace />}
+        {error && <Navigate to={routes.HOME} replace />}
 
         <CountryInfo
           key={id}

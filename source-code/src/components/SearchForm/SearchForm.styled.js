@@ -7,7 +7,7 @@ export const SearchFormStyled = styled.form`
 
   position: relative;
 
-  margin-bottom: ${props => props.theme.spacing.step * 20}px;
+  margin-bottom: ${({ theme }) => theme.spacing(20)};
 `;
 
 export const Select = styled.select`

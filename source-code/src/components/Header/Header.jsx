@@ -3,6 +3,7 @@ import { Container } from 'components/App/App.styled';
 
 import { FaFlagUsa } from 'react-icons/fa';
 import { Outlet } from 'react-router-dom';
+import { routes } from 'routes';
 import {
   HeaderWrapper,
   LinkWrapper,
@@ -21,8 +22,8 @@ export const Header = () => {
             <FaFlagUsa size="40px" color={theme.colors.light} />
 
             <LinkWrapper>
-              <NavLinkStyled to="/">Home</NavLinkStyled>
-              <NavLinkStyled to="/country">Countries</NavLinkStyled>
+              <NavLinkStyled to={routes.HOME}>Home</NavLinkStyled>
+              <NavLinkStyled to={routes.COUNTRY}>Countries</NavLinkStyled>
             </LinkWrapper>
           </HeaderWrapper>
         </Container>

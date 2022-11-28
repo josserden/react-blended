@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { fetchByRegion } from 'service/country-service';
 export const useFetchByRegion = () => {
-  const [query, setQuery] = useState('');
+  const [setQuery] = useState('');
   const [countries, setCountries] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
